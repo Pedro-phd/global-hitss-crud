@@ -1,28 +1,28 @@
 {
   "products": [
     {
-      "id": 1,
-      "name": "Iphone SE 2025",
+      "name": "11111",
       "category": "celular",
-      "value": "599"
-    },
-    {
-      "name": "phd",
-      "category": "internet",
-      "value": "123123",
+      "value": "1111",
       "id": 2
     },
     {
-      "name": "sadasd",
+      "name": "123",
       "category": "tv",
-      "value": "123123123123",
-      "id": 3
+      "value": "123",
+      "id": 6
     },
     {
-      "name": "sadasdasdasdasd",
-      "category": "fixo",
-      "value": "123123123123123123",
-      "id": 4
+      "name": "aaaaa",
+      "category": "tv",
+      "value": "aaaa",
+      "id": 7
+    },
+    {
+      "name": "asd",
+      "category": "internet",
+      "value": "asd",
+      "id": 8
     }
   ],
   "category": [
