@@ -1,9 +1,9 @@
 import {useEffect, useState} from 'react'
 import Head from 'next/head'
-import axios, {get} from 'axios'
+import {get} from 'axios'
 import Modal from 'react-modal'
 import { useForm } from "react-hook-form";
-import {customStyles, handleError, handleSucess} from '../src/helpers/index'
+import {customStyles, hadleRemove, handleCreate, handleEdit} from '../src/helpers/index'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import styles from '../styles/Home.module.css';
@@ -18,38 +18,12 @@ export default function Home() {
 
   const { register, handleSubmit, watch, formState: { errors },setValue } = useForm();
 
-  const onEdit = data => handleEdit(data);
-  const onCreate = data => handleCreate(data);
+  const onEdit = data => handleEdit(data,setUndo, idToEdit, setIsOpen, setValue);
+  const onCreate = data => handleCreate(data,setUndo, setValue);
 
   const openEditModal = (id) => {
     setIdToEdit(id)
     setIsOpen(true)
-  }
-
-  const hadleRemove = (item) => {
-    axios.delete(`http://localhost:3000/products/${item.id}`)
-    .then(() => handleSucess('Removido com sucesso!'))
-    .catch(err => handleError(err))
-    setUndo(item)
-  }
-  
-  const handleEdit = (item) => {
-    axios.patch(`http://localhost:3000/products/${idToEdit}`,{...item})
-    .then(() => handleSucess('Editado com sucesso!'))
-    .catch(err => handleError(err))
-    setUndo(item)
-    setIsOpen(false)
-    setValue('id','')
-    setValue('name','')
-    setValue('category','')
-    setValue('value','')
-  }
-  
-  const handleCreate = (item) => {
-    axios.post("http://localhost:3000/products/", {name: item.name, category: item.category, value: item.value})
-    .then(() => handleSucess('Criado com sucesso!'))
-    .catch(err => handleError(err))
-    setUndo(item)
   }
 
   useEffect(() => {
@@ -94,17 +68,16 @@ export default function Home() {
                 <td>{item.value}</td>
                 <td>
                   <button onClick={() => openEditModal(item.id)} className={styles.btnEdit} >editar</button>
-                  <button onClick={() => hadleRemove(item)} className={styles.btnRemove}>Remover</button>
+                  <button onClick={() => hadleRemove(item,setUndo, undo, setValue)} className={styles.btnRemove}>Remover</button>
                   <Modal
                     isOpen={modalIsOpen}
                     onRequestClose={() => setIsOpen(false)}
                     style={customStyles}
-                    contentLabel="Example Modal"
                   >
                     <h1 className={styles.modalTitle}> Editar </h1>
                     <form onSubmit={handleSubmit(onEdit)} className={styles.modalForm}>
-                      <label>Id: </label>
-                      <input defaultValue={item.id} {...register("id")} value={item.id}/>
+                      <label className={styles.labelId}>Id: </label>
+                      <input defaultValue={item.id} {...register("id")} value={item.id} className={styles.inputId}/>
                       <label>Nome: </label>
                       <input defaultValue={item.name} {...register("name")} />
                       <label>Categoria: </label>

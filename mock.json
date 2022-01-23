@@ -1,28 +1,22 @@
 {
   "products": [
     {
-      "name": "11111",
+      "name": "Iphone SE",
       "category": "celular",
-      "value": "1111",
+      "value": "5000",
+      "id": 1
+    },
+    {
+      "name": "TV 4k",
+      "category": "tv",
+      "value": "9000",
       "id": 2
     },
     {
-      "name": "123",
-      "category": "tv",
-      "value": "123",
-      "id": 6
-    },
-    {
-      "name": "aaaaa",
-      "category": "tv",
-      "value": "aaaa",
-      "id": 7
-    },
-    {
-      "name": "asd",
+      "name": "Net 100 mega",
       "category": "internet",
-      "value": "asd",
-      "id": 8
+      "value": "150",
+      "id": 3
     }
   ],
   "category": [
